@@ -1,4 +1,3 @@
-NepaliDateConverter
-===================
+#date-converter
 
-A python library to convert dates from B.S. to A.D.
+Converts dates from B.S. to A.D.
