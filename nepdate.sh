@@ -51,6 +51,56 @@ function add_bs_days_to_ad {
     echo $bs_days
 }
 
+function count_bs_days {
+        # Returns the number of days between the two given B.S. dates.
+
+        # begin_ad_date : A tuple in the format (year,month,day) that specify the date to start counting from.
+        # end_ad_date : A tuple in the format (year,month,day) that specify the date to end counting.
+
+        # Algorithm:
+
+        # Its not the piece of algorithm, but it works for this program..
+
+        # 1) First add total days in all the years
+
+        # 2) Subtract the days from first (n-1) months of the beginning year
+
+        # 3) Add the number of days from the last month of the beginning year
+
+        # 4) Subtract the days from the last months from the end year
+
+        # 5) Add the beginning days excluding the day itself
+
+        # 6) Add the last remaining days excluding the day itself
+
+
+        # NOTE:
+        # Tuple in the dictionary starts from 0
+        # The range(a,b) function starts from a and ends at b-1
+    days=0
+    #1) First add total days in all the years
+    for ((year=bs_equiv[0]; year<=bs_date[0]; year++)) {
+    	for ((month=0; month<12 ; month++)) {
+	    month_day=$(jshon -e $year -e $month < bs_date.json)
+    	    ((days=$days+$month_day))
+    	}
+    }
+    #2) Subtract the days from first (n-1) months of the beginning year
+    for ((month=0; month<bs_equiv[1]; month++)) {
+	month_day=$(jshon -e $bs_equiv[0] -e $month <bs_date.json)
+	((days=$days-$month_day))
+    }
+    #3) Add the number of days from the last month of the beginning year
+    ((days=$days+$(jshon -e $bs_equiv[0] -e 11 <bs_date.json)))
+    #4) Subtract the days from the last months from the end year
+    for ((month=bs_date[1]; month<11; month++)) {
+	month_day=$(jshon -e $bs_equiv[0] -e $month <bs_date.json)
+	((days=$days-$month_day))
+    }
+    #5) Add the beginning days excluding the day itself
+    days=$days-$bs_equiv[2] - 1
+}
+
 
 
 #checking arguments
@@ -86,6 +136,8 @@ esac
 
 month=2000
 ad_date=(2000 1 1)
+bs_date=(2050 1 1)
+count_bs_days
 # a = 9
 # date -d "2010-01-29 +$a days" +%Y-%m-%d
 #
