@@ -139,34 +139,59 @@ function count_bs_days {
 
 
 function bs2ad {
-    Returns the A.D. equivalent date as a tuple in the format yyyy-mm-dd if the date is within range, else returns None
-    if $
+    # Returns the A.D. equivalent date as a tuple in the format yyyy-mm-dd if the date is within range, else returns None
+    if [[ ${bs_date[0]} < 2000 || ${bs_date[0]} > 2089 || ${bs_date[1]} < 1 || ${bs_date[1]} > 12 || ${bs_date[2]} < 1 || ${bs_date[0]} > 32 ]] ; then
+	echo "Invalid input"
+	exit
+    else
+	count_bs_days
+	add_days_to_ad
+    fi
+}
+
+function ad2bs {
+    # Returns the A.D. equivalent date as a tuple in the format yyyy-mm-dd if the date is within range, else returns None
+    if [[ ${ad_date[0]} < 1994 || ${ad_date[0]} > 2033 || ${ad_date[1]} < 1 || ${ad_date[1]} > 12 || ${ad_date[2]} < 1 || ${ad_date[0]} > 31 ]] ; then
+	echo "Invalid input"
+	exit
+    else
+	count_bs_days
+	add_days_to_ad
+    fi
 }
 
 #checking arguments
-if [ $# -eq 0 ]; then
-    Usage;
-    exit 1;
-fi
+# if [ $# -eq 0 ]; then
+#     Usage;
+#     exit 1;
+# fi
 
-TEMP=$(getopt --long ad2bs:,bs2ad\
-		-n "nepdate" -- "$@")
+# TEMP=$(getopt --long ad2bs:,bs2ad:\
+# 		-n "nepdate" -- "$@")
 
-if [ $? != "0" ]; then
-    exit 1
-fi
+# if [ $? != "0" ]; then
+#     exit 1
+# fi
 
-eval set -- "$TEMP"
+# eval set -- "$TEMP"
 
 case $1 in
     # ad2bs part
-    --ad2bs)
-	ad_date=$2
+    ad2bs)
+	y=$(echo $2 | sed 's/\(.*\)-\(.*\)-\(.*\)/\1/p' -n)
+	m=$(echo $2 | sed 's/\(.*\)-\(.*\)-\(.*\)/\2/p' -n)
+	d=$(echo $2 | sed 's/\(.*\)-\(.*\)-\(.*\)/\3/p' -n)
+	ad_date=($y $m $d)
+	echo ad_date ${ad_date[0]}/${ad_date[1]}/${ad_date[2]}
 	ad2bs
 	;;
     # bs2ad part
-    --bs2ad)
-	bs_date=$2
+    bs2ad)
+	y=$(echo $2 | sed 's/\(.*\)-\(.*\)-\(.*\)/\1/p' -n)
+	m=$(echo $2 | sed 's/\(.*\)-\(.*\)-\(.*\)/\2/p' -n)
+	d=$(echo $2 | sed 's/\(.*\)-\(.*\)-\(.*\)/\3/p' -n)
+	bs_date=($y $m $d)
+	echo bs_date ${bs_date[0]}/${bs_date[1]}/${bs_date[2]}
 	bs2ad
 	;;
     *)
@@ -174,11 +199,10 @@ case $1 in
 	;;
 
 esac
+echo 0 $0
+echo 1 $1
+echo 2 $2
 
-month=2000
-ad_date=(2000 1 1)
-bs_date=(2050 1 1)
-add_days_to_ad
 # a = 9
 # date -d "2010-01-29 +$a days" +%Y-%m-%d
 #
