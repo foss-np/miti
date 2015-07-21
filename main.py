@@ -1,37 +1,7 @@
-### BEGIN LICENSE
-# Copyright (C) 2011 Shritesh Bhattarai shriteshb@gmail.com
-# This program is free software: you can redistribute it and/or modify it 
-# under the terms of the GNU General Public License version 3, as published 
-# by the Free Software Foundation.
-# 
-# This program is distributed in the hope that it will be useful, but 
-# WITHOUT ANY WARRANTY; without even the implied warranties of 
-# MERCHANTABILITY, SATISFACTORY QUALITY, or FITNESS FOR A PARTICULAR 
-# PURPOSE.  See the GNU General Public License for more details.
-# 
-# You should have received a copy of the GNU General Public License along 
-# with this program.  If not, see <http://www.gnu.org/licenses/>.
-### END LICENSE
+#!/usr/bin/python3
 
 import datetime
-class NepaliDateConverter:
-    '''
-    A class to convert Bikram Samwat (B.S.) to A.D. and vice versa.
-    
-    Usage:
-    converter = NepaliDateConverter()
-    print converter.ad2bs((1995,9,12))
-    print converter.bs2ad((2052,05,27))
-    
-    Range:
-    1944 A.D. to 2033 A.D.
-    2000 B.S. to 2089 B.S.
-    
-    bs : a dictionary that contains the number of days in each month of the B.S. year
-    bs_equiv, ad_equiv  : The B.S. and A.D. equivalent dates for counting and calculation
-    
-    '''
-    
+class NepaliDateConverter:        
     (bs_equiv, ad_equiv) = ((2000,9,17),(1944,1,1)) 
     
     bs = {} 
@@ -277,3 +247,9 @@ class NepaliDateConverter:
         else:
             date_delta = self.count_ad_days(self.ad_equiv, ad_date)
             return self.add_bs_days(self.bs_equiv, date_delta)
+
+
+        
+converter = NepaliDateConverter()
+print(converter.ad2bs((1995,9,12)))
+print(converter.bs2ad((2052,5,27)))
