@@ -47,3 +47,6 @@ Bikram Samwat (B.S.) to A.D. and vice versa.
    #+RESULTS:
    : gcc example.c date.c -o example
    : Nepali Date: 2061 Baisakh 1 is Eng Eq. to 2004 4 26 April Day Number:2 Monday
+
+** Javascript
+   based on [[https://github.com/techgaun/ad-bs-converter][ad-bs-converter]]
