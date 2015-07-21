@@ -1,0 +1,36 @@
+#+TITLE: miti
+#+DESCRIPTION: date converter
+#+DATE: Tuesday, Jul 21 2015
+
+Converts dates from B.S. to A.D.
+Bikram Samwat (B.S.) to A.D. and vice versa.
+
+
+* Supported ranges
+  | AD to BS Conversion | 1944 - 2033 |
+  | BS to AD Conversion | 2000 - 2089 |
+
+
+* Implemntation
+** Python
+   based on [[https://github.com/shritesh/nepdate][shritesh/nepdate]]
+
+   #+begin_src sh :results output
+     ./main.py
+   #+end_src
+
+   #+RESULTS:
+   : (2052, 5, 27)
+   : (1995, 9, 12)
+
+** C
+   based on [[https://github.com/aatishnn/nepdate][aatishnn/nepdate]]
+
+   #+begin_src sh :results output
+     make c
+     ./example
+   #+end_src
+
+   #+RESULTS:
+   : gcc example.c date.c -o example
+   : Nepali Date: 2061 Baisakh 1 is Eng Eq. to 2004 4 26 April Day Number:2 Monday
