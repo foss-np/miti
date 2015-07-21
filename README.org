@@ -5,11 +5,9 @@
 Converts dates from B.S. to A.D.
 Bikram Samwat (B.S.) to A.D. and vice versa.
 
-
 * Supported ranges
   | AD to BS Conversion | 1944 - 2033 |
   | BS to AD Conversion | 2000 - 2089 |
-
 
 * Implemntation
 ** Python
@@ -22,6 +20,21 @@ Bikram Samwat (B.S.) to A.D. and vice versa.
    #+RESULTS:
    : (2052, 5, 27)
    : (1995, 9, 12)
+
+** bash
+   by [[https://github.com/krazedkrish][krazedkrish]]
+
+   #+begin_src sh :results output
+     ./main.sh
+   #+end_src
+
+   #+RESULTS:
+   : Usage: 	nepdate.sh [OPTIONS]
+   : 	--ad2bs	Convert from A.D. to B.S.
+   : 	--bs2ad	Convert from B.S. to A.D.
+   : 0 ./main.sh
+   : 1
+   : 2
 
 ** C
    based on [[https://github.com/aatishnn/nepdate][aatishnn/nepdate]]
