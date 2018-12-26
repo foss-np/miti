@@ -9,7 +9,7 @@ Bikram Samwat (B.S.) to A.D. and vice versa.
   | AD to BS Conversion | 1944 - 2033 |
   | BS to AD Conversion | 2000 - 2089 |
 
-* Implemntation
+* Implimentation
 ** Python
    based on [[https://github.com/shritesh/nepdate][shritesh/nepdate]]
 
